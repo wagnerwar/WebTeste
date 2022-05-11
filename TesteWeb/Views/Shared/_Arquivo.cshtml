@@ -1,0 +1,232 @@
+﻿@using TesteWeb.Controllers
+@using TesteWeb.Models
+@{
+    var urlEnvioArquivo = Url.Action("EnvioArquivo", "Arquivo");
+    var urlRemocaoArquivo = Url.Action("RemoverArquivo", "Arquivo");
+    List<ArquivoModel> arquivosExistentes = new List<ArquivoModel>();
+    // arquivosExistentes.Add(new ArquivoModel() { Nome = "teste" });
+    List<ArquivoModel> listaArquivos = arquivosExistentes;
+    int quantidadeMinimaArquivos = 2;
+}
+@model int?
+<!-- dropzone -->
+@if (Model.HasValue)
+{
+    var desc = Model.Value;
+    <h1>Identificador: @desc</h1>
+}
+<form id="frmDropZone" method="post">
+    <div id="dropZona" class="col-md-12">
+        <div class="row">
+            <div class="col-md-2 form-group">
+                <label for="txtNome">Nome</label>
+                <input class="form-control" name="txtNome" id="txtNome" />
+            </div>
+            <div class="col-md-2 form-group">
+                <button class="clicavel btn btn-default" style="margin-top: 1.7em;">Anexar arquivo</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="tblArquivos" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Comprovante</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (listaArquivos != null && listaArquivos.Count() > 0)
+                        {
+                            int x = 1;
+                            <tr class="antigo">
+                                @foreach (var c in listaArquivos)
+                                {
+                                    <td>@c.Nome </td>
+                                    <td><a target="_blank" href="@Url.Action("ImprimirArquivo", "Arquivo", new { Nome = c.Nome })">Link</a></td>
+                                    <td><a class="lnkExclusao" data-contador="@x" data-nome="@c.Nome" href="#" onclick="javascript: removerArquivo(this)">Excluir</a></td>
+                                    x++;
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 form-group">
+                <button type="button" name="btnEnviarServidor" id="btnEnviarServidor" class="btn btn-default">Enviar pro servidor</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var DropzoneDocumento = {};
+    var urlArquivo = "@urlEnvioArquivo";
+    var quantidadeMinimaArquivos = @quantidadeMinimaArquivos;
+    var formularioArquivoValido = false;
+    $(document).ready(function () {
+        $("button").click(function (evt) { evt.preventDefault(); });
+        // todo: DropZone
+        DropzoneDocumento = new Dropzone("#dropZona", {
+            url: urlArquivo,
+            clickable: ".clicavel",
+            acceptedFiles: ".pdf, .jpg, .png",
+            maxFilesize: 20,
+            //maxFiles: 3, quantidade máxima por tipo de documento
+            acceptedFiles: "image/*, application/pdf",
+            dictRemoveFileConfirmation: "Quer mesmo excluir o arquivo?",
+            dictFileTooBig: "Tamanho máximo de cada arquivo: 20MB",
+            uploadMultiple: false,
+            parallelUploads: 1,
+            autoProcessQueue: false, // Envio ao servidor se dá de forma manual
+            //autoProcessQueue: true, // Envio ao servidor se dá de forma automática
+            init: function () {
+                var self = this;
+                // Eventos aqui
+                self.on("addedfile", function (file) {
+                    console.log(file);
+                    console.log("Arquivo adicionado");
+                    file.nome = $("#txtNome").val();
+                    ExibirListaArquivos(file);
+                });
+
+                self.on("processing", function (file) {
+                    console.log("Arquivo em processamento");
+                    console.log(file);
+                });
+
+                self.on("removedfile", function (file) {
+                    console.log("Arquivo removido");
+                    console.log(file);
+                });
+
+                self.on("maxfilesexceeded", function (file) {
+                    console.log("Excedido número máximo de uploads");
+                });
+
+                self.on("sending", function (file, xhr, formData) {
+                    console.log("Adicionando novos parâmetros");
+                    formData.append("nome", file.nome);
+                });
+
+                self.on("queuecomplete", function () {
+                    console.log("Upload completo de documentos");
+                    if (DropzoneDocumento.getAcceptedFiles().length > 0) {
+                        DropzoneDocumento.processQueue();
+                    }
+                });
+
+                self.on("complete", function () {
+                    console.log("Upload de document completo");
+                    self.processQueue();
+                });
+            },
+        });
+        $("#btnEnviarServidor").click(function (evt) {
+            evt.preventDefault();
+            enviarArquivosServidor();
+        });
+        $("button[data-formulario-arquivo-valido='true']").click(function (ev) {
+            ev.preventDefault();
+            console.log("Validar formulário de arquivos");
+            //$(this).off("click").on("");
+            //formularioArquivoValido = true
+            retornoValidacaoArquivos = ValidarArquivos();
+            formularioArquivoValido = retornoValidacaoArquivos[0];
+            if (formularioArquivoValido == false) {
+                alert(retornoValidacaoArquivos[1]);
+            }
+        });
+    });
+    function ExibirListaArquivos(file) {
+        let arquivos = DropzoneDocumento.getAcceptedFiles();
+        $("#tblArquivos tbody > .novo").empty();
+        let templateHtml = "";
+        if (file != null) {
+            templateHtml += `<tr class="novo">
+        <td>${file.nome}</td>
+        <td>Baixar</td>
+        <td><a data-nome="${file.nome}" href="#" onclick="javascript: removerArquivo(this)">Excluir</a></td>
+        </tr>`;
+        }
+        if (arquivos != null && arquivos.length > 0) {
+            for (var c = 0; c < arquivos.length; c++) {
+                templateHtml += `<tr class="novo">
+                <td>${arquivos[c].nome}</td>
+                <td>Baixar</td>
+                <td><a data-contador="${c+1}" data-nome="${arquivos[c].nome}" href="#" onclick="javascript: removerArquivo(turlRemocaoArquivorlRemocaoArquivois)">Excluir</a></td>
+                </tr>`;
+            }
+        }
+        $("#tblArquivos tbody").append(templateHtml);
+    }
+    function removerArquivo(obj) {
+        console.log(obj);
+        var attr_nome = $(obj).attr("data-nome");
+        var attr_contador = $(obj).data("contador");
+        console.log(attr_nome);
+        var arquivosDocumento = DropzoneDocumento.getAcceptedFiles();
+        let encontrou_lista = false;
+        for (var i = 0; i < arquivosDocumento.length; i++) {
+            if (arquivosDocumento[i].nome == attr_nome) {
+                encontrou_lista = true;
+                console.log("LIQUIDAR!!");
+                console.log(arquivosDocumento[i]);
+                DropzoneDocumento.removeFile(arquivosDocumento[i]);
+                ExibirListaArquivos(null);
+                break;
+            }
+        }
+        if (encontrou_lista == false) {
+            $("#tblArquivos tbody tr.antigo").each(function (i, v) {
+                let linha = $(v);
+                console.log(linha);
+                let nomeLinha = linha.find("a.lnkExclusao").data("nome");
+                console.log(nomeLinha);
+                if (nomeLinha == attr_nome) {
+                    // Implementar exclusão do arquivo no servidor
+                    removerArquivoServidor(nomeLinha, $(v));
+                }
+            });
+        }
+    }
+    function removerArquivoServidor(nome, elemento) {
+        $.ajax({
+            url: "@urlRemocaoArquivo",
+            dataType: "json",
+            data: { nome: nome },
+            method: "POST",
+            success: function (data) {
+                if (data.msg == "OK") {
+                    elemento.remove();
+                }
+            },
+            error: function (xhr, status,) { }
+        });
+    }
+    function enviarArquivosServidor() {
+        if (DropzoneDocumento.getAcceptedFiles().length > 0) {
+            DropzoneDocumento.processQueue();
+        }
+    }
+
+    function ValidarArquivos() {
+        let quantidadeArquivosExistentes = $("#tblArquivos tbody tr").length;
+        console.log(quantidadeArquivosExistentes);
+        if (quantidadeArquivosExistentes < quantidadeMinimaArquivos) {
+            return [false, "Deve ter a quantidade mínima de arquivos"];
+        }
+        // Verificar se fila de envio do dropzone está concluído
+        let quantidadeArquivosFilaEnvioServidor = DropzoneDocumento.getQueuedFiles().length;
+        let quantidadeArquivosEmMemoria = DropzoneDocumento.getAcceptedFiles().length;
+        //console.log(quantidadeArquivosFilaEnvioServidor);
+        //console.log(quantidadeArquivosEmMemoria);
+        if (quantidadeArquivosEmMemoria > 0 && quantidadeArquivosFilaEnvioServidor > 0) {
+            return [false, "Existem arquivos a serem enviados ao servidor."];
+        }
+        return [true, "envio de arquivos feito com sucesso"];
+    }
+</script>

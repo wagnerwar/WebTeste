@@ -1,0 +1,89 @@
+﻿Instalando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Não foi possível encontrar instaladores públicos com o atributo RunInstallerAttribute.Yes no assembly C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe.
+Confirmando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Não foi possível encontrar instaladores públicos com o atributo RunInstallerAttribute.Yes no assembly C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe.
+Remova o arquivo InstallState porque não há instaladores.
+Desinstalando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+Não foi possível encontrar instaladores públicos com o atributo RunInstallerAttribute.Yes no assembly C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe.
+Instalando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Não foi possível encontrar instaladores públicos com o atributo RunInstallerAttribute.Yes no assembly C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe.
+Confirmando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Não foi possível encontrar instaladores públicos com o atributo RunInstallerAttribute.Yes no assembly C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe.
+Remova o arquivo InstallState porque não há instaladores.
+Instalando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Instalando o serviço ServicoTeste...
+Criando a origem de EventLog ServicoTeste no log Application...
+Revertendo o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Restaurando o log de eventos para o estado anterior da origem ServicoTeste.
+Instalando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Instalando o serviço ServicoTeste...
+Criando a origem de EventLog ServicoTeste no log Application...
+Revertendo o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Restaurando o log de eventos para o estado anterior da origem ServicoTeste.
+Instalando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Instalando o serviço ServicoTeste...
+Serviço ServicoTeste foi instalado com êxito.
+Criando a origem de EventLog ServicoTeste no log Application...
+Confirmando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   i = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+   logtoconsole = 
+Desinstalando o assembly 'C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.InstallLog
+   assemblypath = C:\pojetos\TesteWeb\Batch.Servico\bin\Debug\Batch.Servico.exe
+Removendo a origem do EventLog ServicoTeste.
+Serviço ServicoTeste está sendo removido do sistema...
+Serviço ServicoTeste foi removido com êxito do sistema.

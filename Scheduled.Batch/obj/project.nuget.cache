@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "IfuQ6RMhAfy3lfQaKG0aS59wFwhdIP4yQh3/HzxGvlsO0ct7zQVEQSv23BHb+KtofNRCWz4DvW2twM2gFZ0oRQ==",
+  "success": true,
+  "projectFilePath": "C:\\pojetos\\TesteWeb\\Scheduled.Batch\\Scheduled.Batch.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\p017432\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\p017432\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

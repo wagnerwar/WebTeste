@@ -1,0 +1,10 @@
+*.bin
+*.debug
+*/*.*/bin/
+*/*.vs/*
+*/*/obj
+*/*/bin/
+*.bin
+*.debug
+packages/
+*/obj/
