@@ -1,5 +1,0 @@
-C:\pojetos\TesteWeb\Batch.Dominio\bin\Debug\Batch.Dominio.dll
-C:\pojetos\TesteWeb\Batch.Dominio\bin\Debug\Batch.Dominio.pdb
-C:\pojetos\TesteWeb\Batch.Dominio\obj\Debug\Batch.Dominio.csproj.CoreCompileInputs.cache
-C:\pojetos\TesteWeb\Batch.Dominio\obj\Debug\Batch.Dominio.dll
-C:\pojetos\TesteWeb\Batch.Dominio\obj\Debug\Batch.Dominio.pdb
