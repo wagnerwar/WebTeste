@@ -23,6 +23,7 @@ namespace TesteWeb.Controllers
         {
             try
             {
+                //throw new Exception("Zaz");
                 String caminhoGravacaoArquivos = @"C:\caminhoTeste\";
                 String extensao = String.Empty;
                 String mimeType = String.Empty;
@@ -48,7 +49,8 @@ namespace TesteWeb.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { msg = "NOK" }, JsonRequestBehavior.AllowGet);
+                throw ex;
+                //return Json(new { msg = "NOK" }, JsonRequestBehavior.AllowGet);
             }
         }
         [HttpPost]

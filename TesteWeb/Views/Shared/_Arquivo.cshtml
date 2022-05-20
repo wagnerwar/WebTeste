@@ -114,14 +114,28 @@
 
                 self.on("queuecomplete", function () {
                     console.log("Upload completo de documentos");
-                    if (DropzoneDocumento.getAcceptedFiles().length > 0) {
+                    /*if (DropzoneDocumento.getAcceptedFiles().length > 0) {
                         DropzoneDocumento.processQueue();
-                    }
+                    }*/
+                    console.log(DropzoneDocumento);
+                    // Reprocessar arquivos com erro
+                    let listaArquivosEnviados = DropzoneDocumento.getAcceptedFiles();
+                    let listaArquivosComErro = listaArquivosEnviados.filter(x => x.status == "error");
+                    console.log(listaArquivosComErro);
+                    if (listaArquivosComErro.length > 0) {
+                        ReprocessarFila(listaArquivosComErro);
+                    }                    
                 });
 
-                self.on("complete", function () {
+                self.on("complete", function (file) {
                     console.log("Upload de document completo");
-                    self.processQueue();
+                    console.log(file);
+                    if (file.status == "success") {
+                        self.processQueue();
+                    } else if (file.status == "error") {
+                        console.log("Parar processamento da fila");
+                        //file.status
+                    }                    
                 });
             },
         });
@@ -141,6 +155,19 @@
             }
         });
     });
+    function ReprocessarFila(listaArquivosComErro) {
+        for (let i = 0; i < listaArquivosComErro.length; i++) {
+            listaArquivosComErro[i].status = "queued";
+            listaArquivosComErro[i].upload.bytesSent = 0;
+            listaArquivosComErro[i].upload.progress = 0;
+        }
+        console.log(listaArquivosComErro);
+        DropzoneDocumento.removeAllFiles(true); // Remove tudo para inserir de novo
+        for (let i = 0; i < listaArquivosComErro.length; i++) {
+            DropzoneDocumento.files.push(listaArquivosComErro[i]);
+        }
+        console.log(DropzoneDocumento.getAcceptedFiles());
+    }
     function ExibirListaArquivos(file) {
         let arquivos = DropzoneDocumento.getAcceptedFiles();
         $("#tblArquivos tbody > .novo").empty();
@@ -157,7 +184,7 @@
                 templateHtml += `<tr class="novo">
                 <td>${arquivos[c].nome}</td>
                 <td>Baixar</td>
-                <td><a data-contador="${c+1}" data-nome="${arquivos[c].nome}" href="#" onclick="javascript: removerArquivo(turlRemocaoArquivorlRemocaoArquivois)">Excluir</a></td>
+                <td><a data-contador="${c+1}" data-nome="${arquivos[c].nome}" href="#" onclick="javascript: removerArquivo(this)">Excluir</a></td>
                 </tr>`;
             }
         }
