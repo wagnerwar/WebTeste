@@ -29,6 +29,12 @@ namespace TesteWeb
                       "~/Content/dropzone.min.css"));
             bundles.Add(new ScriptBundle("~/bundles/dropzone").Include(
                 "~/Scripts/dropzone.min.js"));
+
+            // Materialize
+            bundles.Add(new StyleBundle("~/materialize/css").Include(
+                      "~/Content/materialize.min.css"));
+            bundles.Add(new ScriptBundle("~/materialize/js").Include(
+                      "~/Scripts/materialize.min.js"));
         }
     }
 }

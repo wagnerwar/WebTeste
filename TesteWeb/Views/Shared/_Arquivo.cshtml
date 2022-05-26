@@ -160,13 +160,8 @@
             listaArquivosComErro[i].status = "queued";
             listaArquivosComErro[i].upload.bytesSent = 0;
             listaArquivosComErro[i].upload.progress = 0;
-        }
-        console.log(listaArquivosComErro);
-        DropzoneDocumento.removeAllFiles(true); // Remove tudo para inserir de novo
-        for (let i = 0; i < listaArquivosComErro.length; i++) {
-            DropzoneDocumento.files.push(listaArquivosComErro[i]);
-        }
-        console.log(DropzoneDocumento.getAcceptedFiles());
+        }        
+        console.log(DropzoneDocumento.getAcceptedFiles());        
     }
     function ExibirListaArquivos(file) {
         let arquivos = DropzoneDocumento.getAcceptedFiles();

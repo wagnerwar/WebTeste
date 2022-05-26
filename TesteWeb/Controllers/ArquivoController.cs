@@ -23,7 +23,11 @@ namespace TesteWeb.Controllers
         {
             try
             {
-                //throw new Exception("Zaz");
+                if(nome == "teste")
+                {
+                    throw new Exception("Zaz");
+                }
+
                 String caminhoGravacaoArquivos = @"C:\caminhoTeste\";
                 String extensao = String.Empty;
                 String mimeType = String.Empty;

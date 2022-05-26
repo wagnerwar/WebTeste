@@ -10,6 +10,10 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 <div class="row">
+    <h3>Tooltip</h3>
+    <a class="btn tooltipped" data-position="bottom" data-tooltip="I am a tooltip">Clique aqui!</a>
+</div>
+<div class="row">
     <table class="table">
         <thead class="">
             <tr>
@@ -38,6 +42,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $('.tooltipped').tooltip();
         $("#btnGerarExcel").click(function (ev) {
             ev.preventDefault();
             console.log("Clique no botão de gerar Excel");
