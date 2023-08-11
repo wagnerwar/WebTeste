@@ -1,10 +1,6 @@
 ﻿@using TesteWeb.Controllers;
 @{
     ViewBag.Title = "Home Page";
-    var urlGerarExcel = Url.Action("GerarExcel", "Home");
-    var urlGerarPDF = Url.Action("GerarPDF", "Home");
-    var urlImprimir = Url.Action("Imprimir", "Home");
-    var urlImprimirPDF = Url.Action("ImprimirPDF", "Home");
 }
 <div class="jumbotron">
     <h1>ASP.NET</h1>
@@ -59,54 +55,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('.tooltipped').tooltip();
-        $("#btnGerarExcel").click(function (ev) {
-            ev.preventDefault();
-            console.log("Clique no botão de gerar Excel");
-            $.ajax({
-                url: "@urlGerarExcel",
-                success: function (data) {
-                    console.log(data);
-                    if (data.ok) {
-                        window.open("@urlImprimir", "Nova janela");
-                    }
-                }, error: function (xhr, status, er) {
-                    console.log(er);
-                }
-            });
-        });
-        $("#btnGerarPDF").click(function (ev) {
-            ev.preventDefault();
-            console.log("Clique no botão de gerar Excel");
-            $.ajax({
-                url: "@urlGerarPDF",
-                success: function (data) {
-                    console.log(data);
-                    if (data.ok) {
-                        window.open("@urlImprimirPDF", "Nova janela");
-                    }
-                }, error: function (xhr, status, er) {
-                    console.log(er);
-                }
-            });
-        });
-        $("#btnFormulario").click(function (ev) {
-            ev.preventDefault();
-            if (typeof formularioArquivoValido !== 'undefined') {
-                if (formularioArquivoValido == false) {
-                    console.log("Evento não executado por ter pendência de validação");
-                    return false;
-                }
-            }
-            console.log("Executada do formulário");
-        });
-        $("#btnPrintar").click(function (ev) {
-            ev.preventDefault();
-            console.log("Printar");
-            $("#containerPrint").printThis({
-                importCSS: true,
-                importStyle: true,
-                loadCSS: "@Url.Content("~/Content/print.css")"
-            });
-        });
+                
     });
 </script>
