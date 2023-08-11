@@ -251,6 +251,7 @@ namespace TesteWeb.Libs
             imagens.Add(image);
             imagens.Add(image);
             imagens.Add(image);
+            imagens.Add(image);
             agrupados = AgruparImagensTresColunas(imagens, largura, altura, 0, 1);
             agrupados.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             bytes = ms.ToArray();
