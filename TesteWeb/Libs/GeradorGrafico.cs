@@ -60,29 +60,60 @@ namespace TesteWeb.Libs
 
                         // Distribuir pontos com base na quantidade de imagens -- ???
                         List<int> pontosX = new List<int>();
-                        for(var y = 0; y <= limiteCelulasLinha; y++)
-                        {
-                            if(y == 0)
-                            {
-                                pontosX.Add(px);
-                            }
-                            else
-                            {
-                                pontosX.Add(px + (cx + offset) * (y));
-                            }
-                        }
                         List<int> pontosY = new List<int>();
-                        for (var y = 0; y < limiteDivisorLinha; y++)
+
+                        // Tabela
+                        if(limiteCelulasLinha > 0 && limiteDivisorLinha > 0)
                         {
-                            if (y == 0)
+                            for (var y = 0; y <= limiteCelulasLinha; y++)
                             {
-                                pontosY.Add(py);
+                                if (y == 0)
+                                {
+                                    pontosX.Add(px);
+                                }
+                                else
+                                {
+                                    pontosX.Add(px + (cx + offset) * (y));
+                                }
                             }
-                            else
+                            for (var y = 0; y < limiteDivisorLinha; y++)
                             {
-                                pontosY.Add(py + (cy) * (y));
+                                if (y == 0)
+                                {
+                                    pontosY.Add(py);
+                                }
+                                else
+                                {
+                                    pontosY.Add(py + (cy) * (y));
+                                }
                             }
-                        }
+                        }else if(limiteCelulasLinha == 0 && limiteDivisorLinha == 1)
+                        {
+                            // Bloco
+                            for (var y = 0; y <= limiteCelulasLinha; y++)
+                            {
+                                if (y == 0)
+                                {
+                                    pontosX.Add(px);
+                                }
+                                else
+                                {
+                                    pontosX.Add(px + (cx + offset) * (y));
+                                }
+                            }
+                            for (var y = 0; y < imagens.Count(); y++)
+                            {
+                                if (y == 0)
+                                {
+                                    pontosY.Add(py);
+                                }
+                                else
+                                {
+                                    pontosY.Add(py + (cy) * (y));
+                                }
+                            }
+                        }                        
+                                               
                         List<Point> posicoesCalculados = new List<Point>();
                         foreach(var xx in pontosX)
                         {
