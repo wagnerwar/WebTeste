@@ -1,0 +1,113 @@
+﻿
+@using TesteWeb.Controllers;
+@{
+    ViewBag.Title = "Home Page";
+    var urlGerarGrafico = Url.Action("GerarGrafico", "Home");
+    var urlAgruparBlocoGrafico = Url.Action("AgruparBlocoGrafico", "Home");
+    var urlAgruparGrafico = Url.Action("AgruparGrafico", "Home");
+    var urlRedimensionarGrafico = Url.Action("RedimensionarGrafico", "Home");
+}
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">Gerador de grádico.</p>
+</div>
+<div class="row">
+    <div class="col-md-6"
+         style="border: 1px solid #000000; height: 300px;">
+        <img id="imgGrafico" src="" />
+    </div>    
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <button id="btnGerarGrafico" class="btn btn-default">Gerar gráfico</button>
+    </div>
+    <div class="col-md-3">
+        <button id="btnAgruparBlocoGrafico" class="btn btn-default">Agrupar Bloco gráfico</button>
+    </div>
+    <div class="col-md-3">
+        <button id="btnAgruparGrafico" class="btn btn-default">Agrupar gráfico</button>
+    </div>
+    <div class="col-md-3">
+        <button id="btnAgruparGrafico" class="btn btn-default">Agrupar gráfico</button>
+    </div>
+    <div class="col-md-3">
+        <button id="btnRedimensionarGrafico" class="btn btn-default">Redimensionar gráfico</button>
+    </div>
+</div>
+<script type="text/javascript">
+    var urlGerarGrafico = '@urlGerarGrafico';
+    var urlAgruparBlocoGrafico = '@urlAgruparBlocoGrafico';
+    var urlAgruparGrafico = '@urlAgruparGrafico';
+    var urlRedimensionarGrafico = '@urlRedimensionarGrafico';
+
+    $(document).ready(function () {
+        $("#btnGerarGrafico").click(function (e) {
+            console.log("Houve clique");
+            // Ajax
+            $.ajax({
+                url: urlGerarGrafico,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data, status){
+                    console.log(data);
+                    if (data != null) {
+                        $("#imgGrafico").attr("src", `data:image/png;base64,${data.Base64}`);
+                    }
+                }, error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+        $("#btnAgruparBlocoGrafico").click(function (e) {
+            console.log("Houve clique");
+            // Ajax
+            $.ajax({
+                url: urlAgruparBlocoGrafico,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data, status) {
+                    console.log(data);
+                    if (data != null) {
+                        $("#imgGrafico").attr("src", `data:image/png;base64,${data.Base64}`);
+                    }
+                }, error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+        $("#btnAgruparGrafico").click(function (e) {
+            console.log("Houve clique");
+            // Ajax
+            $.ajax({
+                url: urlAgruparGrafico,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data, status) {
+                    console.log(data);
+                    if (data != null) {
+                        $("#imgGrafico").attr("src", `data:image/png;base64,${data.Base64}`);
+                    }
+                }, error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+        $("#btnRedimensionarGrafico").click(function (e) {
+            console.log("Houve clique");
+            // Ajax
+            $.ajax({
+                url: urlAgruparGrafico,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data, status) {
+                    console.log(data);
+                    if (data != null) {
+                        $("#imgGrafico").attr("src", `data:image/png;base64,${data.Base64}`);
+                    }
+                }, error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>

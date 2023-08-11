@@ -35,6 +35,10 @@ namespace TesteWeb
                       "~/Content/materialize.min.css"));
             bundles.Add(new ScriptBundle("~/materialize/js").Include(
                       "~/Scripts/materialize.min.js"));
+
+            //printThis
+            bundles.Add(new ScriptBundle("~/printThis/js").Include(
+                      "~/Scripts/printThis.js"));
         }
     }
 }

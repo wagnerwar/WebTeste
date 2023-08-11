@@ -1,0 +1,8 @@
+﻿@media print {
+    #cabecalhoPrint {
+        font-size: 2em;
+    }
+    @page{
+        margin: 1cm;
+    }
+}

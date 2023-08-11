@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>Gerador de QRCODE</h2>
+    <form method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Enter text for creating QR Code</label>
+                    </td>
+                    <td>
+                        <input asp-for="Texto" data-val-required="Texto precisa ser digitado"  />
+                        <span asp-validation-for="Texto" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    @if (Model != null)
+    {
+        <h3>@Html.Raw(Model.Mensagem)</h3>
+        <div class="row col-md-12">
+            <div class="col-md-4">
+                @if (Model.QRCode != null)
+                {
+                    <img src="@String.Format("data:image/png;base64,{0}", Model.QRCodeBase64)" />
+                }
+            </div>
+        </div>
+    }
+
+
+</div>

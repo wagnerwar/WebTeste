@@ -8,6 +8,12 @@
     @Styles.Render("~/materialize/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+
+    @*
+        <link rel="stylesheet" media="print" href="@Url.Content("~/Content/print.css")" />
+    *@
+
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,6 +31,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Grafico", "Grafico", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,6 +47,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/dropzone")
     @Scripts.Render("~/materialize/js")
+    @Scripts.Render("~/printThis/js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

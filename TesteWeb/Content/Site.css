@@ -26,3 +26,14 @@ textarea {
 .dz-details{
     display: none;
 }
+
+/*printThis*/
+/*#cabecalhoPrint{
+    color: #0000FF;
+}
+@media print {
+    #cabecalhoPrint {
+        font-size: 2em;
+    }
+}
+*/
