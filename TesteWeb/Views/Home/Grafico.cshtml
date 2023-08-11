@@ -28,9 +28,6 @@
         <button id="btnAgruparGrafico" class="btn btn-default">Agrupar gráfico</button>
     </div>
     <div class="col-md-3">
-        <button id="btnAgruparGrafico" class="btn btn-default">Agrupar gráfico</button>
-    </div>
-    <div class="col-md-3">
         <button id="btnRedimensionarGrafico" class="btn btn-default">Redimensionar gráfico</button>
     </div>
 </div>
@@ -96,7 +93,7 @@
             console.log("Houve clique");
             // Ajax
             $.ajax({
-                url: urlAgruparGrafico,
+                url: urlRedimensionarGrafico,
                 method: 'GET',
                 dataType: 'json',
                 success: function (data, status) {
