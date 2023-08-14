@@ -30,7 +30,7 @@ namespace TesteWeb.Controllers
             try
             {
                 GeradorGrafico gerador = new GeradorGrafico();
-                var imagem = gerador.GerarImagemTotalizadorGrid("100", 120, 60);
+                var imagem = gerador.GerarImagemTotalizadorComTituloBarra("100", 140, 60);
                 retorno.Base64 = imagem;
             }catch(Exception ex)
             {
@@ -75,7 +75,7 @@ namespace TesteWeb.Controllers
             try
             {
                 GeradorGrafico gerador = new GeradorGrafico();
-                var imagem = gerador.AgruparImagemTotalizadorBloco("100", 120, 60, null);
+                var imagem = gerador.AgruparImagemTotalizadorBloco("100", 140, 60, null);
                 retorno.Base64 = imagem;
             }
             catch (Exception ex)

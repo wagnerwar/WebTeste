@@ -192,6 +192,44 @@ namespace TesteWeb.Libs
             base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
             return base64String;
         }
+        public string GerarImagemTotalizadorComTituloGrid(
+            string total,
+            int largura,
+            int altura,
+            IDictionary<string, object> PropriedadesAdicionais = null)
+        {
+            byte[] bytes = null;
+            string base64String = null;
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            var image = RecuperarImagemTotalizadorComTituloGrid(
+                total, 
+                "Totalizador", 
+                largura, 
+                altura);
+            image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            bytes = ms.ToArray();
+            base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+            return base64String;
+        }
+        public string GerarImagemTotalizadorComTituloBarra(
+            string total,
+            int largura,
+            int altura,
+            IDictionary<string, object> PropriedadesAdicionais = null)
+        {
+            byte[] bytes = null;
+            string base64String = null;
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            var image = RecuperarImagemTotalizadorComTituloBarra(
+                total,
+                "Totalizador",
+                largura,
+                altura);
+            image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            bytes = ms.ToArray();
+            base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+            return base64String;
+        }
         public string RedimensionarImagemTotalizadorGrid(
             string total,
             int largura,
@@ -218,7 +256,7 @@ namespace TesteWeb.Libs
             string base64String = null;
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             List<Image> imagens = new List<Image>();
-            var image = RecuperarImagemTotalizadorGrid(total, largura, altura);
+            var image = RecuperarImagemTotalizadorComTituloGrid(total, "Totalizador" , largura, altura);
             Bitmap agrupados = null;
             imagens.Add(image);
             imagens.Add(image);
@@ -246,7 +284,7 @@ namespace TesteWeb.Libs
             string base64String = null;
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             List<Image> imagens = new List<Image>();
-            var image = RecuperarImagemTotalizadorGrid(total, largura, altura);
+            var image = RecuperarImagemTotalizadorComTituloBarra(total, "Totalizador", largura, altura);
             Bitmap agrupados = null;
             imagens.Add(image);
             imagens.Add(image);
@@ -313,6 +351,176 @@ namespace TesteWeb.Libs
                 total, 
                 new Font(new FontFamily("Arial"), tamanhoFonte, FontStyle.Bold),
                 (corTexto != null ? corTexto : Brushes.Black), (RectangleF)displayRectangle, format1);
+            return image;
+        }
+        public Image RecuperarImagemTotalizadorComTituloGrid(
+            string total,
+            string titulo,
+            int largura,
+            int altura)
+        {
+            // Tamanhos esperados
+            int largura_grande = 1085;
+            int largura_medio = 507;
+            int largura_pequeno = 328;
+            int altura_grande = 555;
+            int altura_media = 250;
+            int limite_caracteres = 9;
+            byte[] bytes = null;
+            string base64String = null;
+            Image image = new Bitmap(largura, altura);
+            Graphics graph = Graphics.FromImage(image);
+            graph.Clear(Color.White);
+
+            int tamanhoFonte = 10;
+            //int fator = 45;
+            int fator = 15;
+            int dimensaoX = 200;
+            int dimensaoY = 100;
+
+            var centroX = (largura / 2);
+            var centroY = (altura / 2);
+            var pontoX = centroX - (dimensaoX / 2);
+            var pontoY = centroY - (dimensaoY / 2);
+            Pen pen = new Pen(Brushes.Black);
+            Brush corTexto = null;
+            Brush corTotalizador = null;
+            
+
+
+            // Propriedades adicionais
+            corTotalizador = new SolidBrush(Color.FromArgb(0, 255, 255));
+            corTexto = new SolidBrush(Color.FromArgb(0, 0, 0));
+
+            // Construct a new Rectangle .
+            Rectangle displayRectangle = new Rectangle(
+                new Point(0, (altura / 2)), 
+                new Size((largura), (altura / 2)));
+
+            Rectangle displayRectangleTitulo = new Rectangle(
+                new Point(0, 0),
+                new Size( (largura ), (altura / 2)));
+
+            // Fundo
+            graph.FillRectangle(corTotalizador != null ? corTotalizador : Brushes.Yellow,
+               displayRectangleTitulo);
+
+            graph.FillRectangle(corTotalizador != null ? corTotalizador : Brushes.Yellow, 
+                displayRectangle);
+            
+            
+            // título
+            StringFormat formatTitulo = new StringFormat(StringFormatFlags.LineLimit);
+            formatTitulo.LineAlignment = StringAlignment.Center;
+            formatTitulo.Alignment = StringAlignment.Center;
+            //graph.FillRectangle(corTotalizador != null ? corTotalizador : Brushes.Yellow, displayRectangleTitulo);
+            graph.DrawString(
+                total,
+                new Font(new FontFamily("Arial"), tamanhoFonte, FontStyle.Bold),
+                (corTexto != null ? corTexto : Brushes.Black),
+                (RectangleF)displayRectangleTitulo,
+                formatTitulo);
+
+            // Total
+            StringFormat format1 = new StringFormat(StringFormatFlags.LineLimit);
+            format1.LineAlignment = StringAlignment.Near;
+            format1.Alignment = StringAlignment.Center;
+            
+            graph.DrawString(
+                titulo,
+                new Font(new FontFamily("Arial"), tamanhoFonte, FontStyle.Regular),
+                (corTexto != null ? corTexto : Brushes.Black), 
+                (RectangleF)displayRectangle, 
+                format1);
+            
+            
+            return image;
+        }
+
+        public Image RecuperarImagemTotalizadorComTituloBarra(
+            string total,
+            string titulo,
+            int largura,
+            int altura)
+        {
+            // Tamanhos esperados
+            int largura_grande = 1085;
+            int largura_medio = 507;
+            int largura_pequeno = 328;
+            int altura_grande = 555;
+            int altura_media = 250;
+            int limite_caracteres = 9;
+            byte[] bytes = null;
+            string base64String = null;
+            Image image = new Bitmap(largura, altura);
+            Graphics graph = Graphics.FromImage(image);
+            graph.Clear(Color.White);
+
+            int tamanhoFonte = 10;
+            //int fator = 45;
+            int fator = 15;
+            int dimensaoX = 200;
+            int dimensaoY = 100;
+
+            var centroX = (largura / 2);
+            var centroY = (altura / 2);
+            var pontoX = centroX - (dimensaoX / 2);
+            var pontoY = centroY - (dimensaoY / 2);
+            Pen pen = new Pen(Brushes.Black);
+            Brush corTexto = null;
+            Brush corTotalizador = null;
+            Brush corTitulo = null;
+
+
+            // Propriedades adicionais
+            corTotalizador = new SolidBrush(Color.FromArgb(0, 255, 255));
+            corTexto = Brushes.Black;
+            corTitulo = new SolidBrush(Color.FromArgb(106, 90, 205));
+
+            // Construct a new Rectangle .
+
+
+            Rectangle displayRectangleTitulo = new Rectangle(
+                new Point(0, 0),
+                new Size((Convert.ToInt32(largura * 0.8)), (altura)));
+
+            Rectangle displayRectangle = new Rectangle(
+            new Point((Convert.ToInt32(largura * 0.8)), 0),
+            new Size((Convert.ToInt32(largura * 0.2)), altura));
+
+            // Fundo
+            graph.FillRectangle(corTitulo != null ? corTitulo : Brushes.Yellow,
+               displayRectangleTitulo);
+
+            graph.FillRectangle(corTotalizador != null ? corTotalizador : Brushes.Green,
+                displayRectangle);
+
+
+            // título
+            StringFormat formatTitulo = new StringFormat(StringFormatFlags.LineLimit);
+            formatTitulo.LineAlignment = StringAlignment.Center;
+            formatTitulo.Alignment = StringAlignment.Center;
+            //graph.FillRectangle(corTotalizador != null ? corTotalizador : Brushes.Yellow, displayRectangleTitulo);
+            graph.DrawString(
+                titulo,
+                new Font(new FontFamily("Arial"), tamanhoFonte, FontStyle.Bold),
+                (corTexto != null ? corTexto : Brushes.Black),
+                (RectangleF)displayRectangleTitulo,
+                formatTitulo);
+
+            // Total
+            StringFormat format1 = new StringFormat(StringFormatFlags.LineLimit);
+            format1.LineAlignment = StringAlignment.Center;
+            format1.Alignment = StringAlignment.Center;
+
+            graph.DrawString(
+                total,
+                new Font(new FontFamily("Arial"), tamanhoFonte, FontStyle.Regular),
+                (corTexto != null ? corTexto : Brushes.Black),
+                (RectangleF)displayRectangle,
+                format1);
+
+
             return image;
         }
     }
